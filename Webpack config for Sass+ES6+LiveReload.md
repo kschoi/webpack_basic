@@ -8,4 +8,6 @@ To get live reload working you need:
 - add this script <script src="http://localhost:35729/livereload.js"></script> to your index.html
 - run in terminal webpack
 
+Don't forget to add final css file to your site ;)
+
 That's it :D
