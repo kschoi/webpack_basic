@@ -1,13 +1,18 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-var LiveReloadPlugin = require('webpack-livereload-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
-    entry : './js/app.js',
+    entry : {
+        'dist/script.js': './src/app.js',
+        'dist/main.css~': './src/main.scss'
+    },
     output : {
-        filename: './js/out.js'
+        path: __dirname+'/',
+        filename: '[name]'
     },
     watch: true,
     devtool: 'eval-source-map',
+
     module: {
         loaders:[
             {
@@ -19,19 +24,19 @@ module.exports = {
                 }
             }
         ],
+
         rules: [
             {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    //resolve-url-loader may be chained before sass-loader if necessary
                     use: ['css-loader', 'sass-loader']
                 })
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin('./js/style.css'),
+        new ExtractTextPlugin('./dist/style.css'),
         new LiveReloadPlugin()
     ]
 
