@@ -2,19 +2,15 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry : {
-       'js/out.js': './js/project.jsx'
-   },
-   output : {
-       path: __dirname+'/',
-       filename: '[name]'
-   },
-   devServer: {
-      inline: true,
-      contentBase: './',
-      port: 3001
+    entry: ["whatwg-fetch","./src/jsx/App.jsx","./src/sass/style.scss"],
+    output: { filename: "./dist/js/out.js" },
+    devServer: {
+        inline: true,
+        contentBase: './',
+        port: 3001
     },
     watch: true,
+
     module: {
         loaders: [
             {
@@ -33,19 +29,19 @@ module.exports = {
 
             },
             {
-              test: /\.(png|jpg|gif)$/,
-              exclude: /node_modules/,
-              use: [
-                {
-                  loader: 'file-loader',
-                  options: {}
-                }
-              ]
+                test: /\.(png|jpg|gif)$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {}
+                    }
+                ]
             }
         ]
     },
     plugins: [
-       new ExtractTextPlugin('./css/style.css')
+        new ExtractTextPlugin('./dist/css/style.css')
 
-   ]
+    ]
 };
